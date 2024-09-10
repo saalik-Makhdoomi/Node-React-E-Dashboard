@@ -1,20 +1,27 @@
 const express = require("express");
-const cors = express.request("cors");
-require('./db/config');
-const User = require('./db/User');
-const app = express();
+const cors = require("cors");
+const connectDb = require("./utils/connectDb");
+const { handleSignUp, handleLogin } = require("./controllers/userController");
 
-app.use(express.json());
-app.use(cors());
+const port = 5000;
 
-app.post("/register", async (req,res)=>{
-    const user = new User(req.body);
-    const result = await user.save();
-    res.send(result)
-})
 
-// app.get("/",(req,res)=>{
-//     res.send("app is working...")
-// });
 
-app.listen(5000);
+const server = express(); // inheritance
+
+connectDb();
+
+server.use(cors()); // middle ware
+server.use(express.json())
+
+
+// routes
+
+server.get("/" , (req,res)=>{res.send("Hello server is working!")})
+
+server.post("/user/signup" , handleSignUp )
+server.post("/user/login" , handleLogin )
+
+server.listen(port, () => {
+  console.log(`Server started on port ${port} !`);
+});
