@@ -5,6 +5,7 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
  
@@ -16,7 +17,13 @@ const SignUp = () => {
     })
 
   const collectData = async () => {
+    if (!name || !email || !password) {
+      setErrorMessage("All fields are required."); // Set error message
+      return;
+    }
+    setErrorMessage(""); // Clear error message if all fields are filled
     console.warn(name, email, password);
+
     let result = await fetch("http://localhost:5000/user/signup", {  // Corrected endpoint here
       method: "POST",
       body: JSON.stringify({ name, email, password }),
@@ -34,6 +41,7 @@ const SignUp = () => {
   return (
     <div className="register">
       <h1>Register</h1>
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>} {/* Display error message */}
       <input
         className="inputBox"
         type="text"
