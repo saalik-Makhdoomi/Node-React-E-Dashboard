@@ -1,14 +1,14 @@
 const User = require("../models/userModel");
 
 const handleSignUp = async (req, res) => {
-
-  const user = new User(req.body);
-    const result = await user.save();
-    res.send(result)
-    console.log(result)
+  let user = new User(req.body);
+  let result = await user.save();
+  result = result.toObject();
+  delete result.password
+  res.send(result);
+  console.log(result);
   // try {
   //   const { name, email, password } = req.body;
-
 
   //   console.log(req.body)
   //   const newUser = await new User({ name, email, password });
@@ -25,7 +25,17 @@ const handleSignUp = async (req, res) => {
 };
 
 const handleLogin = async (req, res) => {
-  console.log("i m working  i m in login");
+  console.log(req.body);
+  if (req.body.password && req.body.email) {
+    let user = await User.findOne(req.body).select("-password");
+    if (user) {
+      res.send(user);
+    } else {
+      res.send({ result: "NO User Found" });
+    }
+  }else{
+    res.send({result:'No User Found'})
+  }
 };
 
 module.exports = { handleSignUp, handleLogin };
