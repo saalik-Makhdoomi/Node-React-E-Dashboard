@@ -27,7 +27,7 @@ const handleSignUp = async (req, res) => {
 const handleLogin = async (req, res) => {
   console.log(req.body);
   if (req.body.password && req.body.email) {
-    let user = await User.findOne(req.body).select("-password");
+    let user = await User.findOne(req.body).select("password");
     if (user) {
       res.send(user);
     } else {
