@@ -24,7 +24,7 @@ server.post("/user/signup" , handleSignUp )
 server.post("/user/login" , handleLogin )
 
 
-server.post("/add-product" , handleProduct)
+server.post("/product/add-product" , handleProduct)
 
 server.listen(port, () => {
   console.log(`Server started on port ${port} !`);

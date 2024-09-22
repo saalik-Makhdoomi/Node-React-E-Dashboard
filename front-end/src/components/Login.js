@@ -29,8 +29,8 @@ if(auth)
       }
     });
     result = await result.json();
-    console.log(result);
-    if(!result.name){
+    console.warn(result);
+    if(result.name){
       localStorage.setItem("user",JSON.stringify(result));
       navigate('/')
 
