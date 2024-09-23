@@ -18,3 +18,10 @@
     border: solid 1px;
     cursor: pointer;
 }
+
+.invalid-input{
+    color: red;
+    margin: -20px;
+    display: block;
+    margin-left: 20px;
+}
