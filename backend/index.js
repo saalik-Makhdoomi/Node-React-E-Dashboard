@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDb = require("./utils/connectDb");
 const { handleSignUp, handleLogin } = require("./controllers/userController");
-const { handleProduct} = require("./controllers/productController");
+const { handleProduct, handleAddProduct} = require("./controllers/productController");
 
 const port = 5000;
 
@@ -25,6 +25,8 @@ server.post("/user/login" , handleLogin )
 
 
 server.post("/product/add-product" , handleProduct)
+
+server.get("/products" , handleAddProduct)
 
 server.listen(port, () => {
   console.log(`Server started on port ${port} !`);

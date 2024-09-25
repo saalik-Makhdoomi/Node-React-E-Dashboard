@@ -8,5 +8,14 @@ const handleProduct = async (req,res) => {
 
 }
 
+const handleAddProduct = async (req, res) => {
+    let products = await Product.find();
+    if(products.length > 0){
+        res.send(products)
+}else{
+    res.send({result: "No  Products Found"})
+    
+}
+}
 
-module.exports = {handleProduct}
+module.exports = { handleProduct, handleAddProduct }
