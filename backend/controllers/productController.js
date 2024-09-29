@@ -1,14 +1,14 @@
 const Product = require("../models/ProductModel");
 
 
-const handleProduct = async (req,res) => {
+const handleAddProduct = async (req,res) => {
     let product = new Product(req.body);
     let result = await product.save();
     res.send(result)
 
 }
 
-const handleAddProduct = async (req, res) => {
+const handleProduct = async (req, res) => {
     let products = await Product.find();
     if(products.length > 0){
         res.send(products)
@@ -18,4 +18,4 @@ const handleAddProduct = async (req, res) => {
 }
 }
 
-module.exports = { handleProduct, handleAddProduct }
+module.exports = { handleAddProduct , handleProduct }

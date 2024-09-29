@@ -1,0 +1,14 @@
+.Product-list{
+    text-align: center;
+    margin-top: 50px;
+}
+.Product-list ul li{
+    display: inline-block;
+    border: 2px solid skyblue;
+    padding: 10px;
+    width: 200px;
+    font-size: larger;
+}
+.Product-list ul{
+    margin: 0;
+}
