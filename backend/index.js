@@ -2,10 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDb = require("./utils/connectDb");
 const { handleSignUp, handleLogin } = require("./controllers/userController");
-const {
-  handleProduct,
-  handleAddProduct,
-} = require("./controllers/productController");
+const { handleProduct, handleAddProduct, handleDeleteProduct } = require("./controllers/productController");
 
 const port = 5000;
 
@@ -27,6 +24,13 @@ server.post("/user/login", handleLogin);
 // Product Route:
 server.post("/product/add-product", handleAddProduct);
 server.get("/products", handleProduct);
+
+// Delete Route:
+server.delete("/product/delete/:id", handleDeleteProduct);
+
+
+
+
 
 server.listen(port, () => {
   console.log(`Server started on port ${port} !`);

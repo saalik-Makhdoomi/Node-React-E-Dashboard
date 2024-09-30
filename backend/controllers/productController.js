@@ -1,5 +1,6 @@
 const Product = require("../models/ProductModel");
 
+// Add product
 
 const handleAddProduct = async (req,res) => {
     let product = new Product(req.body);
@@ -7,6 +8,8 @@ const handleAddProduct = async (req,res) => {
     res.send(result)
 
 }
+
+// Get All products:
 
 const handleProduct = async (req, res) => {
     let products = await Product.find();
@@ -18,4 +21,22 @@ const handleProduct = async (req, res) => {
 }
 }
 
-module.exports = { handleAddProduct , handleProduct }
+// Delete Product:
+
+const handleDeleteProduct = async (req, res) => {
+    try {
+      const productId = req.params.id.trim(); // Trim the product ID here too
+      const deletedProduct = await Product.findByIdAndDelete(productId);
+      
+      if (!deletedProduct) {
+        return res.status(404).json({ message: 'Product not found' });
+      }
+  
+      res.json({ message: 'Product deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
+  
+module.exports = { handleAddProduct , handleProduct, handleDeleteProduct }
