@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./AddProduct.css";
 
 const AddProduct =() => {
@@ -7,6 +7,7 @@ const AddProduct =() => {
     const [category, setCategory]= React.useState('');
     const [company, setCompany]= React.useState('');
     const [error, setError]= React.useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
 
     const addProduct = async ()=>{
 
@@ -27,7 +28,15 @@ const AddProduct =() => {
             }
         });
         result = (await result).json();
-        console.log(result);
+        
+
+    if (result) {
+        setSuccessMessage("Product added Successfully!");
+        setName('');
+        setPrice('');
+        setCategory('');
+        setCompany('');
+    }
         
         // console.log(userId._id);
         
@@ -59,6 +68,8 @@ const AddProduct =() => {
             {error && !company &&  <span className="invalid-input">Enter valid Company</span>}
 
             <button onClick={addProduct} className="productButton">Add Product</button>
+
+            {successMessage && <div className="success-message">{successMessage}</div>}
         </div>
     )
 }
