@@ -10,7 +10,7 @@ const ProductList = () => {
   }, []);
 
   const getProducts = async () => {
-    let result = await fetch("http://localhost:5000/products");
+    let result = await fetch("http://localhost:5000/product/getAllProducts");
     result = await result.json();
     setProducts(result);
   };

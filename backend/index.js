@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDb = require("./utils/connectDb");
 const { handleSignUp, handleLogin } = require("./controllers/userController");
-const { handleProduct, handleAddProduct, handleDeleteProduct } = require("./controllers/productController");
+const { handleProduct, handleAddProduct,handleUpdateProduct,handleUpdateOneProduct, handleDeleteProduct } = require("./controllers/productController");
 
 const port = 5000;
 
@@ -23,7 +23,9 @@ server.post("/user/login", handleLogin);
 
 // Product Route:
 server.post("/product/add-product", handleAddProduct);
-server.get("/products", handleProduct);
+server.get("/product/getAllProducts", handleProduct);
+server.get("/product/updateProduct/:id", handleUpdateProduct);
+server.put("/product/updateOne/:id", handleUpdateOneProduct)
 
 // Delete Route:
 server.delete("/product/delete/:id", handleDeleteProduct);
