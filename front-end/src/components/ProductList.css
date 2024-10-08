@@ -31,4 +31,11 @@
     transform: scale(1.05);
 }
 
+.search-product-box{
+    width: 400px;
+    margin: 20px;
+    height: 40px;
+    border: 1px solid skyblue;
+    padding: 10px;
+}
 

@@ -13,7 +13,7 @@ const UpdateProduct = () => {
 
   useEffect(() => {
     getProductDetails();
-  }, []);
+  }, [params.id]);
 
   const getProductDetails = async () => {
     console.warn(params);

@@ -58,6 +58,21 @@ const handleUpdateOneProduct = async (req, res) => {
 };
 
 
+// Search Product:
+
+const handleSearchProduct = async (req, res) => {
+ let result = await Product.find({
+  "$or": [
+    {name: { $regex: req.params.key} },
+    {company: { $regex: req.params.key} },
+    {category: { $regex: req.params.key} },
+
+    ]
+ });
+ res.send(result);
+}
+
+
 // Delete Product:
 
 const handleDeleteProduct = async (req, res) => {
@@ -76,4 +91,4 @@ const handleDeleteProduct = async (req, res) => {
     }
   };
   
-module.exports = { handleAddProduct , handleProduct, handleUpdateProduct, handleUpdateOneProduct , handleDeleteProduct }
+module.exports = { handleAddProduct , handleProduct, handleUpdateProduct, handleUpdateOneProduct ,handleSearchProduct, handleDeleteProduct }

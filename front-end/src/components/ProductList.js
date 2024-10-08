@@ -38,9 +38,25 @@ const ProductList = () => {
     }
   };
 
+
+  // Search Product API:
+  
+  const searchHandle = async (event)=> {
+    
+    let key = event.target.value;
+    let result = await fetch (`http://localhost:5000/search/${key}`);
+    result = await result.json();
+    if (result) {
+      setProducts(result)
+    }
+  }
+
   return (
     <div className="Product-list">
       <h3>Product List</h3>
+      <input type="text" className='search-product-box' placeholder="Search Product"  
+      onChange={searchHandle}
+      />
       <ul>
         <li>S. NO</li>
         <li>Name</li>
